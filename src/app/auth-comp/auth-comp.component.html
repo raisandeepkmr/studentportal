@@ -1,0 +1,7 @@
+<div *ngIf="isRegistring; then thenBlock else elseBlock"></div>
+<ng-template #thenBlock>
+  <app-register-comp></app-register-comp>
+</ng-template>
+<ng-template #elseBlock>
+  <app-login-comp></app-login-comp>
+</ng-template>
