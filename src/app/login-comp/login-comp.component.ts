@@ -10,7 +10,7 @@ import {HttpCommService} from "../service/http-comm.service";
 export class LoginCompComponent {
   email = '';
   password = '';
-  userType = 'Student';
+  userType = 'Professor';
 
   constructor(private data: DataShareService, private http: HttpCommService) {
   }
@@ -22,6 +22,8 @@ export class LoginCompComponent {
         sessionStorage.setItem("sp_token",res.token);
         sessionStorage.setItem("token_expiry",res.token_expiry);
         sessionStorage.setItem("number",res.number);
+        sessionStorage.setItem("userType",this.userType);
+        this.data.changeAuthLevel("loggedin");
       })
   }
 

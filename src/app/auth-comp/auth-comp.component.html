@@ -3,5 +3,11 @@
   <app-register-comp></app-register-comp>
 </ng-template>
 <ng-template #elseBlock>
-  <app-login-comp></app-login-comp>
+  <div *ngIf="isLoggedIn; then mainBlock else loginBlock"></div>
+  <ng-template #mainBlock>
+    <app-main-comp></app-main-comp>
+  </ng-template>
+  <ng-template #loginBlock>
+    <app-login-comp></app-login-comp>
+  </ng-template>
 </ng-template>

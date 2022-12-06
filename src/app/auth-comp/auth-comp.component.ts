@@ -9,6 +9,7 @@ import {DataShareService} from "../service/data-share.service";
 })
 export class AuthCompComponent {
   isRegistring = false;
+  isLoggedIn = false;
 
   message: string = "";
   subscription: Subscription | undefined;
@@ -20,7 +21,15 @@ export class AuthCompComponent {
     this.subscription = this.data.currentMessage.subscribe(message => {
       this.message = message;
       console.log("Message: " + this.message);
-      this.switchRegister();
+      if(this.message === 'login') {
+        this.switchRegister(false);
+      } else if(this.message === 'register') {
+        this.switchRegister(true);
+      } else if(this.message === 'loggedin') {
+        this.isLoggedIn = true;
+      } else if(this.message === 'loggedoff') {
+        this.isLoggedIn = false;
+      }
     });
   }
 
@@ -29,7 +38,7 @@ export class AuthCompComponent {
     this.subscription.unsubscribe();
   }
 
-  switchRegister() {
-    this.isRegistring = this.isRegistring ? false: true;
+  switchRegister(stat: boolean) {
+    this.isRegistring = stat;
   }
 }
