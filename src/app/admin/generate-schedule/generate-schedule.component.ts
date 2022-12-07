@@ -17,6 +17,7 @@ export class GenerateScheduleComponent {
 
   constructor(private http: HttpCommService, private router: Router) {
     this.loadCourses();
+    this.loadSchedule();
   }
 
   loadCourses() {
@@ -27,7 +28,26 @@ export class GenerateScheduleComponent {
       });
   }
 
-  generateSchedule() {
+  loadSchedule() {
+    this.http.getAllSchedule()
+      .subscribe(res => {
+        console.log(res);
+        this.schedules = res;
+      });
+  }
 
+  generateSchedule() {
+    this.http.generateSchedule()
+      .subscribe(res => {
+        console.log(res);
+        this.schedules = res;
+      });
+  }
+
+  deleteSchedule() {
+    this.http.deleteSchedule()
+      .subscribe(res => {
+        this.schedules = [];
+      });
   }
 }

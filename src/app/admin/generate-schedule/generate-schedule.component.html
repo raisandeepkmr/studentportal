@@ -8,29 +8,34 @@
               <div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
 
                 <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
-                  <button type="button" class="btn btn-primary btn-lg" (click)="generateSchedule()" *ngIf="!schedules || !schedules.time">Generate Scedule</button>
+                  <button type="button" class="btn btn-primary btn-lg" (click)="generateSchedule()" *ngIf="!schedules || schedules.length < 1">Generate Scedule</button>
                 </div>
 
+                <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
+                  <button type="button" class="btn btn-primary btn-lg" (click)="deleteSchedule()" *ngIf="schedules && schedules.length > 0">Delete Scedule</button>
+                </div>
 
                 <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Course Schedule</p>
 
-                <table class="table" *ngIf="schedules && schedules.time">
+                <table class="table" *ngIf="schedules">
                   <thead>
                   <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Code</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Credit Hours</th>
+                    <th scope="col">Course ID</th>
+                    <th scope="col">Room ID</th>
+                    <th scope="col">Available Seats</th>
+                    <th scope="col">Faculty</th>
                     <th scope="col">Time</th>
+                    <th scope="col">Day</th>
                   </tr>
                   </thead>
                   <tbody *ngFor="let schedule of schedules">
                   <tr>
                     <th scope="row">{{schedule.courseId}}</th>
-                    <td>{{schedule.code}}</td>
-                    <td>{{schedule.name}}</td>
-                    <td>{{schedule.minimumChrs}}</td>
+                    <td>{{schedule.roomId}}</td>
+                    <td>{{schedule.availableSpace}}</td>
+                    <td>{{schedule.facultyId}}</td>
                     <td>{{schedule.time}}</td>
+                    <td>{{schedule.days}}</td>
                   </tr>
                   </tbody>
                 </table>

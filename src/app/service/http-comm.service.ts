@@ -33,8 +33,16 @@ export class HttpCommService {
     return this.http.post(this.svcUrl + "/student",{name: name, number: '', email: email, numCourses: '0', password: password}, this.httpOptions);
   }
 
+  saveFaculty(name:string, email:string, courses:string, password:string, department:string): Observable<any> {
+    return this.http.post(this.svcUrl + "/faculty",{name:name, email:email, courses:courses, password:password, department:department}, this.httpOptions);
+  }
+
   addCourse(courseId:string, minimumChrs:string, code:string, name:string, description:string, professor:string): Observable<any> {
     return this.http.post(this.svcUrl + "/course",{courseId: courseId, minimumChrs: minimumChrs, code: code, name: name, description: description, facultyId:professor}, this.httpOptions);
+  }
+
+  addClassroom(name:string, campusName:string, capacity:string, floor:string, description:string): Observable<any> {
+    return this.http.post(this.svcUrl + "/campus/rooms",{name:name, campusName:campusName, capacity:capacity, floor:floor, description:description}, this.httpOptions);
   }
 
   deleteCourse(courseId:string): Observable<any> {
@@ -55,5 +63,17 @@ export class HttpCommService {
 
   userLogin(email: string, password: string): Observable<any> {
     return this.http.post(this.svcUrl + "/login",{email: email, password: password}, this.httpOptions);
+  }
+
+  generateSchedule(): Observable<any> {
+    return this.http.get(this.svcUrl + "/login/timetable", this.httpOptions);
+  }
+
+  deleteSchedule(): Observable<any> {
+    return this.http.delete(this.svcUrl + "/login/timetable", this.httpOptions);
+  }
+
+  getAllSchedule(): Observable<any> {
+    return this.http.get(this.svcUrl + "/login/timetable/all", this.httpOptions);
   }
 }
