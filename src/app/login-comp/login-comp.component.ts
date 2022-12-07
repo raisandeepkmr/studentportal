@@ -8,9 +8,11 @@ import {HttpCommService} from "../service/http-comm.service";
   styleUrls: ['./login-comp.component.css']
 })
 export class LoginCompComponent {
-  email = '';
-  password = '';
-  userType = 'Professor';
+  title = 'Student Enrollment';
+  email = 'sxr76880@ucmo.edu';
+  password = 'password';
+  userType = 'Student';
+  userTypeLabel = 'Student';
 
   constructor(private data: DataShareService, private http: HttpCommService) {
   }
@@ -18,11 +20,11 @@ export class LoginCompComponent {
   loginUser() {
     this.http.loginUser(this.email, this.password, this.userType)
       .subscribe(res => {
-        console.log(res);
         sessionStorage.setItem("sp_token",res.token);
         sessionStorage.setItem("token_expiry",res.token_expiry);
         sessionStorage.setItem("number",res.number);
-        sessionStorage.setItem("userType",this.userType);
+        if(res.userType === "admin") sessionStorage.setItem("userType","admin");
+        else sessionStorage.setItem("userType",this.userType);
         this.data.changeAuthLevel("loggedin");
       })
   }
@@ -31,9 +33,11 @@ export class LoginCompComponent {
     switch(event.target.checked) {
       case true:
         this.userType = "Student";
+        this.userTypeLabel = "Student";
         break;
       case false:
         this.userType = "Professor";
+        this.userTypeLabel = "Admin/Professor";
         break;
     }
   }

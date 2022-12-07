@@ -19,4 +19,22 @@ export class HeadCompComponent {
     sessionStorage.clear()
     this.data.changeAuthLevel("loggedoff")
   }
+
+  isStudent(){
+    const userType = sessionStorage.getItem("userType")!;
+    if(userType.toLowerCase() === 'student') return true;
+    return false;
+  }
+
+  isProfessor(){
+    const userType = sessionStorage.getItem("userType")!;
+    if(userType.toLowerCase() === 'professor') return true;
+    return false;
+  }
+
+  isAdmin(){
+    const userType = sessionStorage.getItem("userType")!;
+    if(userType.toLowerCase() === 'admin') return true;
+    return false;
+  }
 }

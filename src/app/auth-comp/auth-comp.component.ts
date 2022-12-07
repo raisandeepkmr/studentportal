@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import {Subscription} from "rxjs";
 import {DataShareService} from "../service/data-share.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-auth-comp',
@@ -14,12 +15,14 @@ export class AuthCompComponent {
   message: string = "";
   subscription: Subscription | undefined;
 
-  constructor(private data: DataShareService) {
+  constructor(private data: DataShareService, private router: Router) {
   }
 
   ngOnInit() {
     this.subscription = this.data.currentMessage.subscribe(message => {
       this.message = message;
+      let userType: string = sessionStorage.getItem("userType")!;
+      console.log("Usertype: " + userType);
       console.log("Message: " + this.message);
       if(this.message === 'login') {
         this.switchRegister(false);
@@ -27,6 +30,11 @@ export class AuthCompComponent {
         this.switchRegister(true);
       } else if(this.message === 'loggedin') {
         this.isLoggedIn = true;
+        if(userType.toLowerCase() === 'admin')
+          this.router.navigate(["/view-course-information"]);
+        else if(userType.toLowerCase() === 'faculty')
+          this.router.navigate(["/faculty-update-info"]);
+        else this.router.navigate(["student-update-info"]);
       } else if(this.message === 'loggedoff') {
         this.isLoggedIn = false;
       }

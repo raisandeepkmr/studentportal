@@ -9,6 +9,7 @@ import { catchError, map, tap } from 'rxjs/operators';
   styleUrls: ['./register-comp.component.css']
 })
 export class RegisterCompComponent {
+  title = 'Student Enrollment';
   name = '';
   email = '';
   password = '';

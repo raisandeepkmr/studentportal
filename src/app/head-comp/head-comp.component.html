@@ -16,28 +16,28 @@
       <div class="collapse navbar-collapse" id="navbarExample01">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item active">
-            <a class="nav-link" aria-current="page" href="#">Home</a>
+            <a class="nav-link" aria-current="page" routerLink="#">Home</a>
+          </li>
+          <li class="nav-item" *ngIf="isAdmin()">
+            <a class="nav-link" routerLink="/generate-schedule">Generate Schedule</a>
+          </li>
+          <li class="nav-item" *ngIf="isAdmin()">
+            <a class="nav-link" routerLink="/add-course">Add Course</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Features</a>
+            <a class="nav-link" routerLink="/view-course-information">View Course</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Pricing</a>
+            <a class="nav-link" routerLink="/add-student" *ngIf="isAdmin()">Add Student</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#" (click)="logOff()">Log Off</a>
+            <a class="nav-link" routerLink="/add-faculty" *ngIf="isAdmin()">Add Faculty</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="#" (click)="logOff()">Log Off</a>
           </li>
         </ul>
       </div>
     </div>
   </nav>
-  <!-- Navbar -->
-
-  <!-- Jumbotron -->
-<!--  <div class="p-5 text-center bg-light">-->
-<!--    <h1 class="mb-3">Heading</h1>-->
-<!--    <h4 class="mb-3">Subheading</h4>-->
-<!--    <a class="btn btn-primary" href="" role="button">Call to action</a>-->
-<!--  </div>-->
-  <!-- Jumbotron -->
 </header>

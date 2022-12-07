@@ -8,15 +8,4 @@ import {HttpCommService} from "../service/http-comm.service";
   styleUrls: ['./main-comp.component.css']
 })
 export class MainCompComponent {
-  name = '';
-  userNumber = '';
-  email = '';
-  numCourses = '';
-
-  constructor(private data: DataShareService, private http: HttpCommService) {
-  }
-
-  loadUserDetails() {
-
-  }
 }

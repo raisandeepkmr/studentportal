@@ -1,7 +1,9 @@
+<h1 style="text-align: center">{{title}}</h1>
+
 <form>
   <div class="form-check form-switch">
-    <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" (click)="switchUserType($event)">
-    <label class="form-check-label" for="flexSwitchCheckDefault">{{userType}}</label>
+    <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" (click)="switchUserType($event)" checked>
+    <label class="form-check-label" for="flexSwitchCheckDefault">{{userTypeLabel}}</label>
   </div>
   <!-- Email input -->
   <div class="form-outline mb-4">
