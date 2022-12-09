@@ -30,6 +30,9 @@
           <li class="nav-item" *ngIf="isAdmin()">
             <a class="nav-link" routerLink="/add-classroom">Add Classrooms</a>
           </li>
+          <li class="nav-item" *ngIf="isAdmin()">
+            <a class="nav-link" routerLink="/view-classroom">View Classrooms</a>
+          </li>
           <li class="nav-item">
             <a class="nav-link" routerLink="/view-course-information">View Course</a>
           </li>
@@ -37,7 +40,13 @@
             <a class="nav-link" routerLink="/add-student" *ngIf="isAdmin()">Add Student</a>
           </li>
           <li class="nav-item">
+            <a class="nav-link" routerLink="/view-students" *ngIf="isAdmin() || isProfessor()">View Students</a>
+          </li>
+          <li class="nav-item">
             <a class="nav-link" routerLink="/add-faculty" *ngIf="isAdmin()">Add Faculty</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/view-faculties" *ngIf="isAdmin()">View Faculties</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" routerLink="#" (click)="logOff()">Log Off</a>

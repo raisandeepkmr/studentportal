@@ -3,35 +3,41 @@ import {HttpCommService} from "../../service/http-comm.service";
 import {Router} from "@angular/router";
 
 @Component({
-  selector: 'app-course-information',
-  templateUrl: './course-information.component.html',
-  styleUrls: ['./course-information.component.css']
+  selector: 'app-students-information',
+  templateUrl: './students-information.component.html',
+  styleUrls: ['./students-information.component.css']
 })
-export class CourseInformationComponent {
-  courses:any = [];
+export class StudentsInformationComponent {
+  students:any = [];
   minimumChrs = '';
   code = '';
   name = '';
   description = '';
 
   constructor(private http: HttpCommService, private router: Router) {
-    this.loadCourses();
+    this.loadStudents();
   }
 
-  loadCourses() {
-    this.http.getAllCourses()
+  loadStudents() {
+    this.http.getAllStudent()
       .subscribe(res => {
         console.log(res);
-        this.courses = res;
+        this.students = res;
       });
   }
 
-  delete(courseId: string){
-    this.http.deleteCourse(courseId)
+  delete(studentId: string){
+    this.http.deleteStudent(studentId)
       .subscribe(res => {
         console.log(res);
-        this.loadCourses();
+        this.loadStudents();
       });
+  }
+
+  isProfessor(){
+    const userType = sessionStorage.getItem("userType")!;
+    if(userType.toLowerCase() === 'professor') return true;
+    return false;
   }
 
   isAdmin(){
@@ -39,5 +45,4 @@ export class CourseInformationComponent {
     if(userType.toLowerCase() === 'admin') return true;
     return false;
   }
-
 }

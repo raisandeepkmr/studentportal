@@ -3,12 +3,12 @@ import {HttpCommService} from "../../service/http-comm.service";
 import {Router} from "@angular/router";
 
 @Component({
-  selector: 'app-course-information',
-  templateUrl: './course-information.component.html',
-  styleUrls: ['./course-information.component.css']
+  selector: 'app-view-classrooms',
+  templateUrl: './view-classrooms.component.html',
+  styleUrls: ['./view-classrooms.component.css']
 })
-export class CourseInformationComponent {
-  courses:any = [];
+export class ViewClassroomsComponent {
+  classRooms:any = [];
   minimumChrs = '';
   code = '';
   name = '';
@@ -19,15 +19,15 @@ export class CourseInformationComponent {
   }
 
   loadCourses() {
-    this.http.getAllCourses()
+    this.http.getAllRooms()
       .subscribe(res => {
         console.log(res);
-        this.courses = res;
+        this.classRooms = res;
       });
   }
 
-  delete(courseId: string){
-    this.http.deleteCourse(courseId)
+  delete(roomName: string){
+    this.http.deleteRoom(roomName)
       .subscribe(res => {
         console.log(res);
         this.loadCourses();
@@ -39,5 +39,4 @@ export class CourseInformationComponent {
     if(userType.toLowerCase() === 'admin') return true;
     return false;
   }
-
 }

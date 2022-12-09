@@ -20,6 +20,9 @@ import { StuUpdateInformationComponent } from './student/stu-update-information/
 import { CourseInformationComponent } from './common/course-information/course-information.component';
 import { AddUserComponent } from './admin/add-user/add-user.component';
 import { AddFacultyComponent } from './admin/add-faculty/add-faculty.component';
+import { ViewClassroomsComponent } from './admin/view-classrooms/view-classrooms.component';
+import { FacultyInformationComponent } from './admin/faculty-information/faculty-information.component';
+import { StudentsInformationComponent } from './admin/students-information/students-information.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +40,10 @@ import { AddFacultyComponent } from './admin/add-faculty/add-faculty.component';
     StuUpdateInformationComponent,
     CourseInformationComponent,
     AddUserComponent,
-    AddFacultyComponent
+    AddFacultyComponent,
+    ViewClassroomsComponent,
+    FacultyInformationComponent,
+    StudentsInformationComponent
   ],
   imports: [
     BrowserModule,
@@ -49,10 +55,13 @@ import { AddFacultyComponent } from './admin/add-faculty/add-faculty.component';
       {path: 'student-update-info', component: StuUpdateInformationComponent},
       {path: 'faculty-update-info', component: FacUpdateInformationComponent},
       {path: 'add-classroom', component: AddClassroomComponent},
+      {path: 'view-classroom', component: ViewClassroomsComponent},
       {path: 'add-course', component: AddCourseComponent},
       {path: 'generate-schedule', component: GenerateScheduleComponent},
       {path: 'add-student', component: AddUserComponent},
+      {path: 'view-students', component: StudentsInformationComponent},
       {path: 'add-faculty', component: AddFacultyComponent},
+      {path: 'view-faculties', component: FacultyInformationComponent},
       {path: 'view-course-information', component: CourseInformationComponent}
     ])
   ],

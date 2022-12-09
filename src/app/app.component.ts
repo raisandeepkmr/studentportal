@@ -1,4 +1,10 @@
-import { Component } from '@angular/core';
+import {Component, ElementRef, ViewChild} from '@angular/core';
+import {DataShareService} from "./service/data-share.service";
+import {Subscription} from "rxjs";
+import {Router} from "@angular/router";
+
+declare let $: any;
+
 
 @Component({
   selector: 'app-root',
@@ -7,6 +13,22 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'Student Enrollment';
+
+  @ViewChild('theModal') theModal: ElementRef | undefined;
+  showMessageSubs: Subscription | undefined;
+  message = '';
+
+  constructor(private data: DataShareService, private router: Router) {
+  }
+
+  ngOnInit() {
+    this.showMessageSubs = this.data.showCurrentMessage.subscribe(message => {
+      console.log(message);
+      this.message = message;
+      console.log(this.theModal);
+      $(this.theModal?.nativeElement).modal('show');
+    });
+  }
 
   canBeLoaded(): boolean {
     let token: string | null = sessionStorage.getItem("sp_token")

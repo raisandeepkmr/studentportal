@@ -24,11 +24,7 @@ export class AuthCompComponent {
       let userType: string = sessionStorage.getItem("userType")!;
       console.log("Usertype: " + userType);
       console.log("Message: " + this.message);
-      if(this.message === 'login') {
-        this.switchRegister(false);
-      } else if(this.message === 'register') {
-        this.switchRegister(true);
-      } else if(this.message === 'loggedin') {
+      if(this.message === 'loggedin') {
         this.isLoggedIn = true;
         if(userType.toLowerCase() === 'admin')
           this.router.navigate(["/view-course-information"]);

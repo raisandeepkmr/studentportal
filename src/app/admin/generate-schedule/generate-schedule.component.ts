@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import {HttpCommService} from "../../service/http-comm.service";
 import {Router} from "@angular/router";
+import {DataShareService} from "../../service/data-share.service";
 
 @Component({
   selector: 'app-generate-schedule',
@@ -15,7 +16,7 @@ export class GenerateScheduleComponent {
   name = '';
   description = '';
 
-  constructor(private http: HttpCommService, private router: Router) {
+  constructor(private http: HttpCommService, private router: Router, private data: DataShareService) {
     this.loadCourses();
     this.loadSchedule();
   }
@@ -47,7 +48,8 @@ export class GenerateScheduleComponent {
   deleteSchedule() {
     this.http.deleteSchedule()
       .subscribe(res => {
-        this.schedules = [];
+        this.schedules = new Array();
+        this.data.showMessage("Schedule has been clear please check view and come back to see changes!");
       });
   }
 }

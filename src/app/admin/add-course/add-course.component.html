@@ -35,17 +35,15 @@
                     </div>
                   </div>
 
-                  <div class="d-flex flex-row align-items-center mb-4">
-                    <div class="dropdown">
-                      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Select Professor
-                      </button>
-                      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" *ngFor="let prof of professors">
-                        <a class="dropdown-item" href="#" (click)="professor=prof.number;$event.preventDefault()">{{prof.name}}</a>
-                      </div>
-                    </div>
-                    <input type="text" id="form3Example4f" class="form-control" name="courseDesc" [(ngModel)]="professor"/>
+                  <div class="d-flex flex-row align-items-center mb-4" *ngIf="professors && professors.length > 0" name="profDiv">
+                    <select class="form-select" aria-label="Default select example" #profSelect (change)="changeProfessor(profSelect.value)">
+                      <option selected>Select Professor</option>
+                      <option *ngFor="let prof of professors" (click)="professor=prof.number" [value]="prof.number">{{prof.name}}</option>
+                    </select>
                   </div>
+<!--                  <div *ngFor="let prof of professors">-->
+<!--                    <label (click)="professor=prof.number;$event.preventDefault()">{{prof.name}}</label>-->
+<!--                  </div>-->
 
                   <div class="d-flex flex-row align-items-center mb-4">
                     <i class="fas fa-lock fa-lg me-3 fa-fw"></i>

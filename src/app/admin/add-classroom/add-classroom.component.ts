@@ -31,6 +31,7 @@ export class AddClassroomComponent {
     this.http.addClassroom(this.name, this.campusName, this.capacity, this.floor, this.description)
       .subscribe(res => {
         console.log(res);
+        this.router.navigate(["/view-classroom"]);
       });
   }
 }
