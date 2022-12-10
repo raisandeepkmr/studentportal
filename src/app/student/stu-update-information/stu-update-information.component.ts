@@ -14,6 +14,9 @@ export class StuUpdateInformationComponent {
   email = '';
   numCourses = '';
   password = '';
+  address = '';
+  phone = '';
+  dob = '';
 
   constructor(private data: DataShareService, private http: HttpCommService, private router: Router) {
   }
@@ -32,14 +35,21 @@ export class StuUpdateInformationComponent {
       this.email = stu.email;
       this.numCourses = stu.numCourses;
       this.password = stu.password;
+      this.address = stu.address;
+      this.phone = stu.phone;
+      this.dob = stu.dob;
     });
   }
 
   updateStudent(){
-    this.http.updateStudent(this.name, this.userNumber, this.email, this.numCourses, this.password)
+    this.http.updateStudent(this.name, this.userNumber, this.email, this.numCourses, this.password, this.address, this.phone, this.dob)
       .subscribe(res => {
         this.router.navigate(["/student-update-info"])
         console.log(res);
       });
+  }
+
+  changeBDay(dDate: string) {
+    this.dob = dDate;
   }
 }

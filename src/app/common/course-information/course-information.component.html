@@ -17,7 +17,7 @@
                     <th scope="col">Name</th>
                     <th scope="col">Credit Hours</th>
                     <th scope="col">Description</th>
-                    <th scope="col">Tutor</th>
+<!--                    <th scope="col">Tutor</th>-->
                     <th scope="col" *ngIf="isAdmin()">Delete?</th>
                   </tr>
                   </thead>
@@ -28,7 +28,7 @@
                     <td>{{course.name}}</td>
                     <td>{{course.minimumChrs}}</td>
                     <td>{{course.description}}</td>
-                    <td>{{course.facultyId}}</td>
+<!--                    <td>{{course.facultyId}}</td>-->
                     <td *ngIf="isAdmin()"><a href="#" (click)="delete(course.courseId);$event.preventDefault()">Delete</a></td>
                   </tr>
                   </tbody>

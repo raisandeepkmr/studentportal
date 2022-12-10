@@ -9,27 +9,50 @@
 
                 <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Course Schedule</p>
 
-                <table class="table" *ngIf="schedules">
-                  <thead>
+<!--                <table class="table" *ngIf="schedules">-->
+<!--                  <thead>-->
+<!--                  <tr>-->
+<!--                    <th scope="col">Course ID</th>-->
+<!--                    <th scope="col">Room ID</th>-->
+<!--                    <th scope="col">Available Seats</th>-->
+<!--                    <th scope="col">Faculty</th>-->
+<!--                    <th scope="col">Time</th>-->
+<!--                    <th scope="col">Day</th>-->
+<!--                    <th scope="col">Assign?</th>-->
+<!--                  </tr>-->
+<!--                  </thead>-->
+<!--                  <tbody *ngFor="let schedule of schedules">-->
+<!--                  <tr>-->
+<!--                    <th scope="row">{{schedule.courseId}}</th>-->
+<!--                    <td>{{schedule.roomId}}</td>-->
+<!--                    <td>{{schedule.availableSpace}}</td>-->
+<!--                    <td>{{schedule.facultyId}}</td>-->
+<!--                    <td>{{schedule.time}}</td>-->
+<!--                    <td>{{schedule.days}}</td>-->
+<!--                    <td><a href="#" (click)="assign(schedule.id);$event.preventDefault()">Assign</a></td>-->
+<!--                  </tr>-->
+<!--                  </tbody>-->
+<!--                </table>-->
+
+                <table class="table">
+                  <thead class="black white-text">
                   <tr>
-                    <th scope="col">Course ID</th>
-                    <th scope="col">Room ID</th>
-                    <th scope="col">Available Seats</th>
-                    <th scope="col">Faculty</th>
-                    <th scope="col">Time</th>
-                    <th scope="col">Day</th>
+                    <th scope="col">Course Name</th>
+                    <th scope="col">Professor</th>
+                    <th scope="col">Room</th>
+                    <th scope="col">Class Date</th>
+                    <th scope="col">Class Time</th>
                     <th scope="col">Assign?</th>
                   </tr>
                   </thead>
-                  <tbody *ngFor="let schedule of schedules">
-                  <tr>
-                    <th scope="row">{{schedule.courseId}}</th>
-                    <td>{{schedule.roomId}}</td>
-                    <td>{{schedule.availableSpace}}</td>
-                    <td>{{schedule.facultyId}}</td>
-                    <td>{{schedule.time}}</td>
-                    <td>{{schedule.days}}</td>
-                    <td><a href="#" (click)="assign(schedule.id);$event.preventDefault()">Assign</a></td>
+                  <tbody>
+                  <tr *ngFor="let shed of schedules">
+                    <td><label>{{shed.courseName}}</label></td>
+                    <td><label>{{shed.facultyName}}</label></td>
+                    <td><label>{{shed.roomName}}</label></td>
+                    <td><label>{{shed.classDate}}</label></td>
+                    <td><label>{{shed.classTime}}</label></td>
+                    <td><a href="#" (click)="assign(shed.schedulId);$event.preventDefault()">Assign</a></td>
                   </tr>
                   </tbody>
                 </table>

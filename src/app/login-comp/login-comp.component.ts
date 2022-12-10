@@ -9,8 +9,8 @@ import {HttpCommService} from "../service/http-comm.service";
 })
 export class LoginCompComponent {
   title = 'Student Enrollment';
-  email = 'sxr76880@ucmo.edu';
-  password = 'password';
+  email = '';
+  password = '';
   userType = 'Student';
   userTypeLabel = 'Student';
 

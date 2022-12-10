@@ -21,6 +21,10 @@ export class HttpCommService {
     return this.http.get(this.svcUrl + "/faculty/number/" + stuNumber, this.httpOptions);
   }
 
+  getAllFacultyStudent(facNumber: string): Observable<any> {
+    return this.http.get(this.svcUrl + "/faculty/students/" + facNumber, this.httpOptions);
+  }
+
   getStudentDetails(stuNumber: string): Observable<any> {
     return this.http.get(this.svcUrl + "/student/number/" + stuNumber, this.httpOptions);
   }
@@ -29,20 +33,24 @@ export class HttpCommService {
     return this.http.get(this.svcUrl + "/student", this.httpOptions);
   }
 
-  updateStudent(name: string, userNum: string, email: string, numCourse: string, password: string): Observable<any> {
-    return this.http.put(this.svcUrl + "/student",{name: name, number: userNum, email: email, numCourse: numCourse, password: password}, this.httpOptions);
+  updateStudent(name: string, userNum: string, email: string, numCourse: string, password: string, address: string, phone: string, dob: string): Observable<any> {
+    return this.http.put(this.svcUrl + "/student",{name: name, number: userNum, email: email, numCourse: numCourse, password: password, address: address, phone: phone, dob: dob}, this.httpOptions);
   }
 
-  saveStudent(name: string, email: string, password: string): Observable<any> {
-    return this.http.post(this.svcUrl + "/student",{name: name, number: '', email: email, numCourses: '0', password: password}, this.httpOptions);
+  saveStudent(name: string, email: string, password: string, address: string, phone: string, bday: string): Observable<any> {
+    return this.http.post(this.svcUrl + "/student",{name: name, number: '', email: email, numCourses: '0', password: password, address: address, phone: phone, dob: phone}, this.httpOptions);
   }
 
   deleteStudent(studentId: string): Observable<any> {
     return this.http.delete(this.svcUrl + "/student/" + studentId, this.httpOptions);
   }
 
-  saveFaculty(name:string, email:string, courses:string, password:string, department:string): Observable<any> {
-    return this.http.post(this.svcUrl + "/faculty",{name:name, email:email, courses:courses, password:password, department:department}, this.httpOptions);
+  saveFaculty(name:string, email:string, courses:string, password:string, department:string, address:string, phone:string, dob:string): Observable<any> {
+    return this.http.post(this.svcUrl + "/faculty",{name:name, email:email, courses:courses, password:password, department:department, address:address, phone:phone, dob:dob}, this.httpOptions);
+  }
+
+  updateFaculty(name:string, email:string, courses:string, password:string, department:string, address:string, phone:string, dob:string): Observable<any> {
+    return this.http.put(this.svcUrl + "/faculty",{name:name, email:email, courses:courses, password:password, department:department, address:address, phone:phone, dob:dob}, this.httpOptions);
   }
 
   addCourse(courseId:string, minimumChrs:string, code:string, name:string, description:string, professor:string): Observable<any> {
@@ -58,7 +66,7 @@ export class HttpCommService {
   }
 
   deleteRoom(roomName:string): Observable<any> {
-    return this.http.delete(this.svcUrl + "/campus/rooms/" + roomName, this.httpOptions);
+    return this.http.delete(this.svcUrl + "/campus/room/" + roomName, this.httpOptions);
   }
 
   deleteCourse(courseId:string): Observable<any> {
@@ -67,6 +75,14 @@ export class HttpCommService {
 
   getAllCourses(): Observable<any> {
     return this.http.get(this.svcUrl + "/course", this.httpOptions);
+  }
+
+  loadScheduleDetails(): Observable<any> {
+    return this.http.get(this.svcUrl + "/enrolled/schedule/get", this.httpOptions);
+  }
+
+  saveSchedule(schedul:any): Observable<any> {
+    return this.http.post(this.svcUrl + "/enrolled/schedule", schedul, this.httpOptions);
   }
 
   assignCourse(scheduleId:string,studentId:string): Observable<any> {
@@ -99,5 +115,17 @@ export class HttpCommService {
 
   getAllSchedule(): Observable<any> {
     return this.http.get(this.svcUrl + "/login/timetable/all", this.httpOptions);
+  }
+
+  getAllScheduleDetails(): Observable<any> {
+    return this.http.get(this.svcUrl + "/enrolled/schedule/all", this.httpOptions);
+  }
+
+  getAllStudentScheduleDetails(studentNumber:string): Observable<any> {
+    return this.http.get(this.svcUrl + "/student/schedule/" + studentNumber, this.httpOptions);
+  }
+
+  deleteScheduleById(scheduleId:string): Observable<any> {
+    return this.http.delete(this.svcUrl + "/enrolled/schedule/" + scheduleId, this.httpOptions);
   }
 }

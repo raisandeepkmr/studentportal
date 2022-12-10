@@ -15,15 +15,22 @@ export class AddFacultyComponent {
   courses = '';
   password = '';
   department = '';
+  address = '';
+  phone = '';
+  dob = '';
 
   constructor(private data: DataShareService, private http: HttpCommService, private router: Router) {
   }
 
   saveFaculty(){
-    this.http.saveFaculty(this.name, this.email, this.courses, this.password, this.department)
+    this.http.saveFaculty(this.name, this.email, this.courses, this.password, this.department, this.address, this.phone, this.dob)
       .subscribe(res => {
         console.log(res);
         this.router.navigate(["/view-faculties"])
       });
+  }
+
+  changeBDay(dDate: string) {
+    this.dob = dDate;
   }
 }

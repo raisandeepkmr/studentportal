@@ -28,7 +28,7 @@ export class AuthCompComponent {
         this.isLoggedIn = true;
         if(userType.toLowerCase() === 'admin')
           this.router.navigate(["/view-course-information"]);
-        else if(userType.toLowerCase() === 'faculty')
+        else if(userType.toLowerCase() === 'professor')
           this.router.navigate(["/faculty-update-info"]);
         else this.router.navigate(["student-update-info"]);
       } else if(this.message === 'loggedoff') {

@@ -16,13 +16,22 @@
       <div class="collapse navbar-collapse" id="navbarExample01">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item" *ngIf="isStudent()">
-            <a class="nav-link" routerLink="/student-update-info">Student Info</a>
+            <a class="nav-link" routerLink="/student-update-info">User Info</a>
+          </li>
+          <li class="nav-item" *ngIf="isProfessor()">
+            <a class="nav-link" routerLink="/faculty-update-info">User Info</a>
           </li>
           <li class="nav-item" *ngIf="isStudent()">
             <a class="nav-link" routerLink="/assign-courses">Assign Courses</a>
           </li>
           <li class="nav-item" *ngIf="isAdmin()">
-            <a class="nav-link" routerLink="/generate-schedule">Generate Schedule</a>
+            <a class="nav-link" routerLink="/generate-schedule">Create Schedule</a>
+          </li>
+          <li class="nav-item" *ngIf="isAdmin()">
+            <a class="nav-link" routerLink="/schedule-details">View Schedules</a>
+          </li>
+          <li class="nav-item" *ngIf="isStudent()">
+            <a class="nav-link" routerLink="/students-schedule">My Schedules</a>
           </li>
           <li class="nav-item" *ngIf="isAdmin()">
             <a class="nav-link" routerLink="/add-course">Add Course</a>
@@ -40,7 +49,10 @@
             <a class="nav-link" routerLink="/add-student" *ngIf="isAdmin()">Add Student</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" routerLink="/view-students" *ngIf="isAdmin() || isProfessor()">View Students</a>
+            <a class="nav-link" routerLink="/view-students" *ngIf="isAdmin()">View Students</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/faculty-students" *ngIf="isProfessor()">View Students</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" routerLink="/add-faculty" *ngIf="isAdmin()">Add Faculty</a>

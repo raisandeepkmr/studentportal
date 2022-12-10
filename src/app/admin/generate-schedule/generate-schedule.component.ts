@@ -9,47 +9,113 @@ import {DataShareService} from "../../service/data-share.service";
   styleUrls: ['./generate-schedule.component.css']
 })
 export class GenerateScheduleComponent {
-  schedules:any = [];
   courses:any = [];
-  minimumChrs = '';
-  code = '';
-  name = '';
-  description = '';
+  professors:any = [];
+  classRooms:any = [];
+  scheduleDetails:any = [];
+  selectedCourse:any;
+  selectedProf:any;
+  selectedRoom:any;
+  selectedDate:any;
+  selectedTime:any;
+  startTimes:any = [];
 
   constructor(private http: HttpCommService, private router: Router, private data: DataShareService) {
     this.loadCourses();
-    this.loadSchedule();
+    this.loadProfessors();
+    this.loadClassRooms();
+    this.loadScheduleDetails();
+  }
+
+  loadProfessors() {
+    this.http.getAllFaculty()
+      .subscribe(res => {
+        this.professors = res;
+      });
+  }
+
+  loadClassRooms() {
+    this.http.getAllRooms()
+      .subscribe(res => {
+        this.classRooms = res;
+      });
   }
 
   loadCourses() {
     this.http.getAllCourses()
       .subscribe(res => {
-        console.log(res);
         this.courses = res;
       });
   }
 
-  loadSchedule() {
-    this.http.getAllSchedule()
+  loadScheduleDetails() {
+    this.http.loadScheduleDetails()
       .subscribe(res => {
         console.log(res);
-        this.schedules = res;
+        this.scheduleDetails = res;
+        const startDate = new Date(res.startDate);
+        this.startTimes.push(startDate.toTimeString());
+        for (let i = 0; i < 4; i++) {
+          const tempDate = new Date(startDate.getTime() + ((i+1)*170*60*1000));
+          this.startTimes.push(tempDate.toTimeString());
+        }
       });
   }
 
-  generateSchedule() {
-    this.http.generateSchedule()
+  changeSubject(sub:string){
+    this.selectedCourse = sub;
+    console.log(sub);
+  }
+
+  changeProfessor(prof:string){
+    this.selectedProf = prof;
+    console.log(prof);
+  }
+
+  changeRoom(room:string) {
+    this.selectedRoom = room;
+    console.log(room);
+  }
+
+  changeStartTime(startTime:string) {
+    this.selectedTime = startTime;
+    console.log(startTime);
+  }
+
+  changeStartDay(startDay:string) {
+    this.selectedDate = startDay;
+    console.log(startDay);
+  }
+
+  saveSchedule() {
+    const schedule = {
+      facultyId: this.selectedProf,
+      courseId: this.selectedCourse,
+      roomId: this.selectedRoom,
+      startDate: this.scheduleDetails.startDate,
+      endDate: this.scheduleDetails.endDate,
+      date: this.selectedDate,
+      time: this.selectedTime
+    };
+    console.log(schedule);
+    this.http.saveSchedule(schedule)
       .subscribe(res => {
         console.log(res);
-        this.schedules = res;
+        this.router.navigate(["/schedule-details"])
       });
   }
 
-  deleteSchedule() {
-    this.http.deleteSchedule()
-      .subscribe(res => {
-        this.schedules = new Array();
-        this.data.showMessage("Schedule has been clear please check view and come back to see changes!");
-      });
+  getDate(dDate:any): string {
+    return new Date(dDate).toDateString();
+  }
+
+  padTo2Digits(num: number) {
+    return num.toString().padStart(2, '0');
+  }
+
+  formatTime(dDate: any) {
+    const date = new Date(dDate);
+    console.log(date);
+    return date;
   }
 }

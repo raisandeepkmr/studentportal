@@ -13,12 +13,15 @@ export class RegisterCompComponent {
   name = '';
   email = '';
   password = '';
+  address = '';
+  phone = '';
+  dob = '';
 
   constructor(private data: DataShareService, private http: HttpCommService) {
   }
 
   saveStudent(){
-    this.http.saveStudent(this.name, this.email, this.password)
+    this.http.saveStudent(this.name, this.email, this.password, this.address, this.phone, this.dob)
       .subscribe(res => {
         console.log(res);
         this.switchToLogin();

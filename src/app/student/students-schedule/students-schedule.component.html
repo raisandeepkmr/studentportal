@@ -1,0 +1,52 @@
+<section class="vh-100" style="background-color: #eee;">
+  <div class="container h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-lg-12 col-xl-12">
+        <div class="card text-black" style="border-radius: 25px;">
+          <div class="card-body p-md-10">
+            <div class="row justify-content-center">
+              <div>
+                <!--                <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">-->
+                <!--                  <button type="button" class="btn btn-primary btn-lg" (click)="generateSchedule()" *ngIf="!schedules || schedules.length < 1">Generate Scedule</button>-->
+                <!--                </div>-->
+
+                <!--                <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">-->
+                <!--                  <button type="button" class="btn btn-primary btn-lg" (click)="deleteSchedule()" *ngIf="schedules && schedules.length > 0">Delete Scedule</button>-->
+                <!--                </div>-->
+
+                <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Course Schedule</p>
+                <table class="table">
+                  <thead class="black white-text">
+                  <tr>
+                    <th scope="col">Course Name</th>
+                    <th scope="col">Professor</th>
+                    <th scope="col">Room</th>
+                    <th scope="col">Class Date</th>
+                    <th scope="col">Class Time</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <tr *ngFor="let shed of schedules">
+                    <td><label>{{shed.courseName}}</label></td>
+                    <td><label>{{shed.facultyName}}</label></td>
+                    <td><label>{{shed.roomName}}</label></td>
+                    <td><label>{{shed.classDate}}</label></td>
+                    <td><label>{{shed.classTime}}</label></td>
+                  </tr>
+                  </tbody>
+                </table>
+
+              </div>
+              <!--              <div class="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2">-->
+
+              <!--                <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-registration/draw1.webp"-->
+              <!--                     class="img-fluid" alt="Sample image">-->
+
+              <!--              </div>-->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,52 +1,104 @@
 <section class="vh-100" style="background-color: #eee;">
   <div class="container h-100">
     <div class="row d-flex justify-content-center align-items-center h-100">
-      <div class="col-lg-12 col-xl-11">
+      <div class="col-lg-12 col-xl-12">
         <div class="card text-black" style="border-radius: 25px;">
-          <div class="card-body p-md-5">
+          <div class="card-body p-md-10">
             <div class="row justify-content-center">
-              <div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
+              <div>
+<!--                <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">-->
+<!--                  <button type="button" class="btn btn-primary btn-lg" (click)="generateSchedule()" *ngIf="!schedules || schedules.length < 1">Generate Scedule</button>-->
+<!--                </div>-->
 
-                <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
-                  <button type="button" class="btn btn-primary btn-lg" (click)="generateSchedule()" *ngIf="!schedules || schedules.length < 1">Generate Scedule</button>
-                </div>
+<!--                <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">-->
+<!--                  <button type="button" class="btn btn-primary btn-lg" (click)="deleteSchedule()" *ngIf="schedules && schedules.length > 0">Delete Scedule</button>-->
+<!--                </div>-->
 
-                <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
-                  <button type="button" class="btn btn-primary btn-lg" (click)="deleteSchedule()" *ngIf="schedules && schedules.length > 0">Delete Scedule</button>
-                </div>
-
-                <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Course Schedule</p>
-
-                <table class="table" *ngIf="schedules && schedules.length > 0">
-                  <thead>
-                  <tr>
-                    <th scope="col">Course ID</th>
-                    <th scope="col">Room ID</th>
-                    <th scope="col">Available Seats</th>
-                    <th scope="col">Faculty</th>
-                    <th scope="col">Time</th>
-                    <th scope="col">Day</th>
-                  </tr>
+                <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Create Schedule</p>
+                <table class="table">
+                  <thead class="black white-text">
+                    <tr>
+                      <th scope="col">Subject</th>
+                      <th scope="col">Professor</th>
+                      <th scope="col">Room</th>
+                      <th scope="col">Date</th>
+                      <th scope="col">Time</th>
+                      <th scope="col">Start Date</th>
+                      <th scope="col">End Date</th>
+                    </tr>
                   </thead>
-                  <tbody *ngFor="let schedule of schedules">
-                  <tr>
-                    <th scope="row">{{schedule.courseId}}</th>
-                    <td>{{schedule.roomId}}</td>
-                    <td>{{schedule.availableSpace}}</td>
-                    <td>{{schedule.facultyId}}</td>
-                    <td>{{schedule.time}}</td>
-                    <td>{{schedule.days}}</td>
-                  </tr>
+                  <tbody>
+                    <tr>
+                      <td>
+                        <select class="form-select" aria-label="Default select example" #subSelect (change)="changeSubject(subSelect.value)">
+                          <option selected>Select Subject</option>
+                          <option *ngFor="let cor of courses" [value]="cor.courseId">{{cor.name}}</option>
+                        </select>
+                      </td>
+                      <td>
+                        <select class="form-select" aria-label="Default select example" #profSelect (change)="changeProfessor(profSelect.value)">
+                          <option selected>Select Professor</option>
+                          <option *ngFor="let prof of professors" [value]="prof.number">{{prof.name}}</option>
+                        </select>
+                      </td>
+                      <td>
+                        <select class="form-select" aria-label="Default select example" #roomSelect (change)="changeRoom(roomSelect.value)">
+                          <option selected>Select Professor</option>
+                          <option *ngFor="let room of classRooms" [value]="room.name">{{room.name}}</option>
+                        </select>
+                      </td>
+                      <td>
+                        <input type="date" id="birthday" name="birthday" #startDaySelect (change)="changeStartDay(startDaySelect.value)">
+                      </td>
+                      <td>
+                        <select class="form-select" aria-label="Default select example" #startSelect (change)="changeStartTime(startSelect.value)">
+                          <option selected>Select Class Start</option>
+                          <option *ngFor="let staTime of startTimes;let i = index" [value]="i">{{staTime}}</option>
+                        </select>
+                      </td>
+                      <td>
+                        <label>{{getDate(scheduleDetails.startDate)}}</label>
+                      </td>
+                      <td>
+                        <label>{{getDate(scheduleDetails.endDate)}}</label>
+                      </td>
+                    </tr>
                   </tbody>
                 </table>
+                <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
+                  <button type="button" class="btn btn-primary btn-lg" (click)="saveSchedule()">Save</button>
+                </div>
+
+<!--                <table class="table" *ngIf="schedules && schedules.length > 0">-->
+<!--                  <thead>-->
+<!--                  <tr>-->
+<!--                    <th scope="col">Course ID</th>-->
+<!--                    <th scope="col">Room ID</th>-->
+<!--                    <th scope="col">Available Seats</th>-->
+<!--                    <th scope="col">Faculty</th>-->
+<!--                    <th scope="col">Time</th>-->
+<!--                    <th scope="col">Day</th>-->
+<!--                  </tr>-->
+<!--                  </thead>-->
+<!--                  <tbody *ngFor="let schedule of schedules">-->
+<!--                  <tr>-->
+<!--                    <th scope="row">{{schedule.courseId}}</th>-->
+<!--                    <td>{{schedule.roomId}}</td>-->
+<!--                    <td>{{schedule.availableSpace}}</td>-->
+<!--                    <td>{{schedule.facultyId}}</td>-->
+<!--                    <td>{{schedule.time}}</td>-->
+<!--                    <td>{{schedule.days}}</td>-->
+<!--                  </tr>-->
+<!--                  </tbody>-->
+<!--                </table>-->
 
               </div>
-              <div class="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2">
+<!--              <div class="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2">-->
 
-                <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-registration/draw1.webp"
-                     class="img-fluid" alt="Sample image">
+<!--                <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-registration/draw1.webp"-->
+<!--                     class="img-fluid" alt="Sample image">-->
 
-              </div>
+<!--              </div>-->
             </div>
           </div>
         </div>

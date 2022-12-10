@@ -9,20 +9,38 @@ import {Router} from "@angular/router";
 })
 export class ViewClassroomsComponent {
   classRooms:any = [];
+  sections:any = [];
   minimumChrs = '';
   code = '';
   name = '';
   description = '';
 
   constructor(private http: HttpCommService, private router: Router) {
-    this.loadCourses();
+    this.loadClassrooms();
   }
 
-  loadCourses() {
+  loadClassrooms() {
     this.http.getAllRooms()
       .subscribe(res => {
         console.log(res);
         this.classRooms = res;
+        this.loadSections();
+      });
+  }
+
+  loadSections() {
+    this.http.getAllSchedule()
+      .subscribe(res => {
+        // console.log(res);
+        this.sections = res;
+        this.classRooms.forEach((clas: any) => {
+          this.sections.forEach((sec:any) => {
+            if(clas.name === sec.roomId) {
+              console.log(clas.capacity);
+              console.log(sec.roomId);
+            }
+          });
+        });
       });
   }
 
@@ -30,7 +48,7 @@ export class ViewClassroomsComponent {
     this.http.deleteRoom(roomName)
       .subscribe(res => {
         console.log(res);
-        this.loadCourses();
+        this.loadClassrooms();
       });
   }
 

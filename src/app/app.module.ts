@@ -23,6 +23,9 @@ import { AddFacultyComponent } from './admin/add-faculty/add-faculty.component';
 import { ViewClassroomsComponent } from './admin/view-classrooms/view-classrooms.component';
 import { FacultyInformationComponent } from './admin/faculty-information/faculty-information.component';
 import { StudentsInformationComponent } from './admin/students-information/students-information.component';
+import { ViewScheduleComponent } from './common/view-schedule/view-schedule.component';
+import { StudentsViewComponent } from './faculty/students-view/students-view.component';
+import { StudentsScheduleComponent } from './student/students-schedule/students-schedule.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +46,10 @@ import { StudentsInformationComponent } from './admin/students-information/stude
     AddFacultyComponent,
     ViewClassroomsComponent,
     FacultyInformationComponent,
-    StudentsInformationComponent
+    StudentsInformationComponent,
+    ViewScheduleComponent,
+    StudentsViewComponent,
+    StudentsScheduleComponent
   ],
   imports: [
     BrowserModule,
@@ -60,9 +66,13 @@ import { StudentsInformationComponent } from './admin/students-information/stude
       {path: 'generate-schedule', component: GenerateScheduleComponent},
       {path: 'add-student', component: AddUserComponent},
       {path: 'view-students', component: StudentsInformationComponent},
+      {path: 'view-students', component: StudentsInformationComponent},
+      {path: 'faculty-students', component: StudentsViewComponent},
       {path: 'add-faculty', component: AddFacultyComponent},
       {path: 'view-faculties', component: FacultyInformationComponent},
-      {path: 'view-course-information', component: CourseInformationComponent}
+      {path: 'view-course-information', component: CourseInformationComponent},
+      {path: 'schedule-details', component: ViewScheduleComponent},
+      {path: 'students-schedule', component: StudentsScheduleComponent}
     ])
   ],
   providers: [],

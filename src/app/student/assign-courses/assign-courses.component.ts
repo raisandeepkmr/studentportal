@@ -30,7 +30,7 @@ export class AssignCoursesComponent {
   }
 
   loadSchedule() {
-    this.http.getAllSchedule()
+    this.http.getAllScheduleDetails()
       .subscribe(res => {
         console.log(res);
         this.schedules = res;
@@ -53,9 +53,9 @@ export class AssignCoursesComponent {
   }
   // this.data.showMessage("Changing the fucking message!" + courseId);
 
-  assign(courseId: string){
+  assign(scheduleId: string){
     let studentId:string = sessionStorage.getItem("number")!;
-    this.http.assignCourse(courseId, studentId)
+    this.http.assignCourse(scheduleId, studentId)
       .subscribe({
         next: (res) => {
           console.log(res);
@@ -64,7 +64,7 @@ export class AssignCoursesComponent {
         },
         error: (err) =>{
           console.log(err);
-          this.data.showMessage("[HTTP: " + err.status +"] " + err.error.error);
+          this.data.showMessage("[HTTP: " + err.status +"] " + err.error.error + "\nStudent already has this course or has maxed out courses allowed!");
         }
       });
   }
